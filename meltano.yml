@@ -1,5 +1,5 @@
 version: 1
-send_anonymous_usage_stats: true
+send_anonymous_usage_stats: false
 project_id: tap-brillium
 plugins:
   extractors:
@@ -15,9 +15,10 @@ plugins:
     config:
       start_date: '2010-01-01T00:00:00Z'
     settings:
-    # TODO: To configure using Meltano, declare settings and their types here:
-    - name: username
-    - name: password
+    - name: base_uri
+    - name: user_agent
+    - name: api_version
+    - name: api_key
       kind: password
     - name: start_date
       value: '2010-01-01T00:00:00Z'

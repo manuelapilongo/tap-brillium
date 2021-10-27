@@ -1,0 +1,66 @@
+{
+    "type": "object",
+    "properties": {
+        "Id": {
+            "type": "string"
+        },
+        "ParentAccountId": {
+            "type": "string"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "ContactName": {
+            "type": "string"
+        },
+        "ContactTitle": {
+            "type": "string"
+        },
+        "ContactAddress1": {
+            "type": "string"
+        },
+        "ContactAddress2": {
+            "type": "string"
+        },
+        "ContactAddress3": {
+            "type": "string"
+        },
+        "ContactCity": {
+            "type": "string"
+        },
+        "ContactState": {
+            "type": "string"
+        },
+        "ContactPostalCode": {
+            "type": "string"
+        },
+        "ContactCountry": {
+            "type": "string"
+        },
+        "ContactPhone": {
+            "type": "string"
+        },
+        "ContactFax": {
+            "type": "string"
+        },
+        "ContactEmail": {
+            "type": "string"
+        },
+        "DateCreated": {
+            "format": "date-time",
+            "type": "string"
+        },
+        "DateModified": {
+            "format": "date-time",
+            "type": "string"
+        },
+        "DateExpired": {
+            "format": "date-time",
+            "type": "string"
+        },
+        "Uri": {
+            "format": "date-time",
+            "type": "string"
+        }
+    }
+}

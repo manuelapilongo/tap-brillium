@@ -1,30 +1,40 @@
 """REST client handling, including BrilliumStream base class."""
 
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Union
+from typing import Any, Dict, Optional
 
 import requests
-from memoization import cached
 from singer_sdk.authenticators import BasicAuthenticator
 from singer_sdk.helpers.jsonpath import extract_jsonpath
 from singer_sdk.streams import RESTStream
 
-from tap_brillium.streams import MAX_PAGE_SIZE
-
+MAX_PAGE_SIZE = 1000
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
-
 
 class BrilliumStream(RESTStream):
     """Brillium stream class."""
+
+    _page_size: int = MAX_PAGE_SIZE
+    data_json_path = None
 
     @property
     def url_base(self) -> str:
         """Return the API URL root, configurable via tap settings."""
         return self.config.get("base_uri")
 
-    records_jsonpath = "$[*]"  # Or override `parse_response`.
     next_page_token_jsonpath = "$.HasMore"
     curr_page_token_jsonpath = "$.Page"
+
+    @property
+    def records_jsonpath(self) -> str:
+        """Values are usually inside property with endpoint name"""
+        path = "$[*]"
+        if (self.name):
+            path = f"$.{self.name}[*]"
+        if (self.data_json_path): # in case name differs from json path
+            path = f"$.{self.data_json_path}[*]"
+
+        return path
 
     @property
     def authenticator(self) -> BasicAuthenticator:
@@ -70,7 +80,7 @@ class BrilliumStream(RESTStream):
     ) -> Dict[str, Any]:
         """Return a dictionary of values to be used in URL parameterization."""
         params: dict = {
-            "pagesize": MAX_PAGE_SIZE
+            "pagesize": self._page_size
         }
         if next_page_token:
             params["page"] = next_page_token

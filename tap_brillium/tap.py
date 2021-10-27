@@ -2,52 +2,47 @@
 
 from typing import List
 
-from singer_sdk import Tap, Stream
+from singer_sdk import Stream, Tap
 from singer_sdk import typing as th  # JSON schema typing helpers
 
-# TODO: Import your custom stream types here:
-from tap_brillium.streams import (
-    BrilliumStream,
-    UsersStream,
-    GroupsStream,
-)
-# TODO: Compile a list of custom stream types here
-#       OR rewrite discover_streams() below with your custom logic.
-STREAM_TYPES = [
-    UsersStream,
-    GroupsStream,
-]
+from tap_brillium.streams import AccountsStream
 
+STREAM_TYPES = [
+    AccountsStream,
+]
 
 class TapBrillium(Tap):
     """Brillium tap class."""
     name = "tap-brillium"
 
-    # TODO: Update this section with the actual config values you expect:
     config_jsonschema = th.PropertiesList(
         th.Property(
-            "auth_token",
+            "api_key",
             th.StringType,
             required=True,
-            description="The token to authenticate against the API service"
+            description="The key to authenticate against the API service"
         ),
         th.Property(
-            "project_ids",
-            th.ArrayType(th.StringType),
+            "base_uri",
+            th.StringType,
             required=True,
-            description="Project IDs to replicate"
+            description="The base url for the API service"
+        ),
+        th.Property(
+            "user_agent",
+            th.StringType,
+            description="User Agent to use for requests"
+        ),
+        th.Property(
+            "api_version",
+            th.StringType,
+            description="Brillium Api Version. Default to latest available"
         ),
         th.Property(
             "start_date",
             th.DateTimeType,
             description="The earliest record date to sync"
-        ),
-        th.Property(
-            "api_url",
-            th.StringType,
-            default="https://api.mysample.com",
-            description="The url for the API service"
-        ),
+        )
     ).to_dict()
 
     def discover_streams(self) -> List[Stream]:
