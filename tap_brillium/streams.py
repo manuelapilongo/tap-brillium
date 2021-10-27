@@ -11,7 +11,7 @@ from tap_brillium.client import BrilliumStream
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 # TODO: - Override `UsersStream` and `GroupsStream` with your own stream definition.
 #       - Copy-paste as many times as needed to create multiple stream types.
-
+MAX_PAGE_SIZE = 1000
 
 class UsersStream(BrilliumStream):
     """Define custom stream."""
