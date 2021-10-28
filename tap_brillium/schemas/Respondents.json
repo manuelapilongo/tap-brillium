@@ -1,0 +1,158 @@
+{
+    "type": "object",
+    "properties": {
+        "Id": {
+            "type": "integer"
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "AssessId": {
+            "type": "string"
+        },
+        "FirstName": {
+            "type": "string"
+        },
+        "LastName": {
+            "type": "string"
+        },
+        "Email": {
+            "type": "string"
+        },
+        "Custom1": {
+            "type": "string"
+        },
+        "Custom2": {
+            "type": "string"
+        },
+        "Custom3": {
+            "type": "string"
+        },
+        "Custom4": {
+            "type": "string"
+        },
+        "Custom5": {
+            "type": "string"
+        },
+        "Custom6": {
+            "type": "string"
+        },
+        "Custom7": {
+            "type": "string"
+        },
+        "Custom8": {
+            "type": "string"
+        },
+        "Custom9": {
+            "type": "string"
+        },
+        "Custom10": {
+            "type": "string"
+        },
+        "Custom11": {
+            "type": "string"
+        },
+        "Custom12": {
+            "type": "string"
+        },
+        "Custom13": {
+            "type": "string"
+        },
+        "Custom14": {
+            "type": "string"
+        },
+        "Custom15": {
+            "type": "string"
+        },
+        "Custom16": {
+            "type": "string"
+        },
+        "Custom17": {
+            "type": "string"
+        },
+        "Custom18": {
+            "type": "string"
+        },
+        "Custom19": {
+            "type": "string"
+        },
+        "Custom20": {
+            "type": "string"
+        },
+        "Guid": {
+            "type": "string"
+        },
+        "RawScore": {
+            "type": "integer"
+        },
+        "ScalePoints": {
+            "type": "integer"
+        },
+        "FinalScore": {
+            "type": "integer"
+        },
+        "PassFail": {
+            "type": "string"
+        },
+        "StatusCode": {
+            "type": "integer"
+        },
+        "TimesTaken": {
+            "type": "integer"
+        },
+        "TimeUsed": {
+            "type": "integer"
+        },
+        "DateStarted": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DateFinished": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DateRestarted": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "EssayCount": {
+            "type": "integer"
+        },
+        "EssayPoints": {
+            "type": "integer"
+        },
+        "TotalPoints": {
+            "type": "integer"
+        },
+        "EarnedPoints": {
+            "type": "integer"
+        },
+        "DemoMode": {
+            "type": "boolean"
+        },
+        "CreditUsed": {
+            "type": "boolean"
+        },
+        "ProctorId": {
+            "type": "string"
+        },
+        "CourseItemResultId": {
+            "type": "integer"
+        },
+        "Attempt": {
+            "type": "integer"
+        },
+        "Current": {
+            "type": "boolean"
+        },
+        "Page": {
+            "type": "integer"
+        },
+        "TotalPages": {
+            "type": "integer"
+        },
+        "Uri": {
+            "type": "string"
+        }
+    }
+}

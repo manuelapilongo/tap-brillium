@@ -136,3 +136,5 @@ dmypy.json
 .pyre/
 .vscode/settings.json
 config.json
+example/*
+example-output/*

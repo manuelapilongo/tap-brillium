@@ -1,7 +1,7 @@
 """REST client handling, including BrilliumStream base class."""
 
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Iterable, Optional
 
 import requests
 from singer_sdk.authenticators import BasicAuthenticator
@@ -39,6 +39,10 @@ class BrilliumStream(RESTStream):
         return path
 
     @property
+    def schema_filepath(self) -> str:
+        return SCHEMAS_DIR / f"{self.name}.json"
+
+    @property
     def authenticator(self) -> BasicAuthenticator:
         """Return a new authenticator object."""
         return BasicAuthenticator.create_for_stream(
@@ -58,10 +62,16 @@ class BrilliumStream(RESTStream):
 
         return headers
 
+    @property
+    def error_key(self) -> str:
+        return self.name.lower()
+
     def get_next_page_token(
         self, response: requests.Response, previous_token: Optional[Any]
     ) -> Optional[Any]:
         """Return a token for identifying next page or None if no more pages."""
+        if response is None:
+            return None
         next_page_token = None
         next_page_matches = extract_jsonpath(
             self.next_page_token_jsonpath, response.json()
@@ -103,3 +113,17 @@ class BrilliumStream(RESTStream):
                     self.logger.warn(f"Ignoring child {child_stream.name} of {self.name} Id: {child_context['parentId']}")
                     continue
                 child_stream.sync(context=child_context)
+
+    def parse_response(self, response: requests.Response) -> Iterable[dict]:
+        return iter([]) if response is None else super().parse_response(response)
+
+    def _request_with_backoff(
+        self, prepared_request: requests.PreparedRequest, context: Optional[dict]
+    ) -> requests.Response:
+        try:
+            return super()._request_with_backoff(prepared_request=prepared_request, context=context)
+        except RuntimeError as exc:
+            self.logger.warn(str(exc))
+            if f"No {self.error_key} exist for" not in str(exc):
+                raise exc
+        return None

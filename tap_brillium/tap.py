@@ -5,14 +5,18 @@ from typing import List
 from singer_sdk import Stream, Tap
 from singer_sdk import typing as th  # JSON schema typing helpers
 
-from tap_brillium.streams import AccountsStream, AssessmentsStream, EmailTemplatesStream, QuestionGroupsStream, QuestionsStream
+from tap_brillium.streams import AccountsStream, AssessmentsStream, CommentsStream, EmailTemplatesStream, IncompletesStream, QuestionGroupsStream, QuestionsStream, RespondentsStream, ResultsStream
 
 STREAM_TYPES = [
     AccountsStream,
     AssessmentsStream,
     QuestionGroupsStream,
     QuestionsStream,
-    EmailTemplatesStream
+    EmailTemplatesStream,
+    RespondentsStream,
+    ResultsStream,
+    CommentsStream,
+    IncompletesStream
 ]
 
 class TapBrillium(Tap):
