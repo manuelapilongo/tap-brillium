@@ -1,0 +1,85 @@
+{
+    "type": "object",
+    "properties": {
+        "Id": {
+            "type": "integer"
+        },
+        "AssessId": {
+            "type": "string"
+        },
+        "GroupId": {
+            "type": "integer"
+        },
+        "OrigQuesId": {
+            "type": "integer"
+        },
+        "ReferenceId": {
+            "type": "string"
+        },
+        "Type": {
+            "type": "string"
+        },
+        "Sequence": {
+            "type": "integer"
+        },
+        "Points": {
+            "type": "integer"
+        },
+        "ResourceUrl": {
+            "type": "string"
+        },
+        "AllowComments": {
+            "type": "string"
+        },
+        "AnswerPresentation": {
+            "type": "string"
+        },
+        "Text": {
+            "type": "string"
+        },
+        "CorrectExplanation": {
+            "type": "string"
+        },
+        "IncorrectExplanation": {
+            "type": "string"
+        },
+        "AuthorsNotes": {
+            "type": "string"
+        },
+        "Tags": {
+            "type": ["array", "null"],
+            "items": {
+                "type": "string"
+            }
+        },
+        "Answers": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "Id": {
+                        "type": "integer"
+                    },
+                    "QuesId": {
+                        "type": "integer"
+                    },
+                    "Type": {
+                        "type": "integer"
+                    },
+                    "Answer1": {
+                        "type": "string"
+                    },
+                    "Answer2": {
+                        "type": "string"
+                    },
+                    "Match": {
+                        "type": "integer"
+                    },
+                    "Correct": {
+                        "type": "integer"
+                    }
+                }
+            }
+        }
+    }
+}

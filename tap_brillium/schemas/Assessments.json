@@ -1,0 +1,138 @@
+{
+    "type": "object",
+    "properties": {
+        "Id": {
+            "type": "string"
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "Type": {
+            "type": "integer"
+        },
+        "SubType": {
+            "type": "integer"
+        },
+        "Anonymous": {
+            "type": "string"
+        },
+        "Mode": {
+            "type": ["integer", "string"]
+        },
+        "Active": {
+            "type": "string"
+        },
+        "DateStart": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DateEnd": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "QuestionCount": {
+            "type": "integer"
+        },
+        "RespondentCount": {
+            "type": "integer"
+        },
+        "PassingScore": {
+            "type": "integer"
+        },
+        "ScalePoints": {
+            "type": "integer"
+        },
+        "LogoUrl": {
+            "type": "string"
+        },
+        "PostLinkUrl": {
+            "type": "string"
+        },
+        "ResultSendMethod": {
+            "type": "string"
+        },
+        "ResultSendUrl": {
+            "type": "string"
+        },
+        "AppIntegration": {
+            "type": "string"
+        },
+        "MD5Password": {
+            "type": "string"
+        },
+        "LogoutButtonLabel": {
+            "type": "string"
+        },
+        "ExplanationLabel": {
+            "type": "string"
+        },
+        "ViewScore": {
+            "type": "string"
+        },
+        "ViewReview": {
+            "type": "string"
+        },
+        "ViewReviewQuestions": {
+            "type": "string"
+        },
+        "ViewReviewAnswers": {
+            "type": "string"
+        },
+        "ViewEmailResults": {
+            "type": ["integer", "string"]
+        },
+        "AllowRetakes": {
+            "type": "string"
+        },
+        "MaxRetakes": {
+            "type": "integer"
+        },
+        "HoursBetweenRetakes": {
+            "type": "integer"
+        },
+        "NotifyNewResults": {
+            "type": "string"
+        },
+        "GroupPresentation": {
+            "type": "string"
+        },
+        "QuestionsPerPage": {
+            "type": "integer"
+        },
+        "AnswersRequired": {
+            "type": "string"
+        },
+        "AllowSaveInfo": {
+            "type": "string"
+        },
+        "AllowPrintCopy": {
+            "type": "string"
+        },
+        "TimeAllowed": {
+            "type": "integer"
+        },
+        "ProctorRequired": {
+            "type": "string"
+        },
+        "CertificateIssued": {
+            "type": "integer"
+        },
+        "CertificateId": {
+            "type": "integer"
+        },
+        "DateCreated": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DateModified": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Uri": {
+            "type": "string"
+        }
+    }
+}

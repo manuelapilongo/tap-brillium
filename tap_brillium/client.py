@@ -14,6 +14,8 @@ SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 class BrilliumStream(RESTStream):
     """Brillium stream class."""
 
+    # _LOG_REQUEST_METRIC_URLS = True # for testing url in pagination mode
+
     _page_size: int = MAX_PAGE_SIZE
     data_json_path = None
 
@@ -88,3 +90,16 @@ class BrilliumStream(RESTStream):
             params["sort"] = "asc"
             params["order_by"] = self.replication_key
         return params
+
+    def get_child_context(self, record: dict, context: Optional[dict]) -> dict:
+        return {
+            "parentId": record["Id"]
+        }
+
+    def _sync_children(self, child_context: dict) -> None:
+        for child_stream in self.child_streams:
+            if child_stream.selected or child_stream.has_selected_descendents:
+                if "ignore_streams" in child_context and child_stream.name in child_context["ignore_streams"]:
+                    self.logger.warn(f"Ignoring child {child_stream.name} of {self.name} Id: {child_context['parentId']}")
+                    continue
+                child_stream.sync(context=child_context)

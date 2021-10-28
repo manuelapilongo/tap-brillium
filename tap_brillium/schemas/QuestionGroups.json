@@ -1,0 +1,61 @@
+{
+    "type": "object",
+    "properties": {
+        "Id": {
+            "type": "integer"
+        },
+        "AssessId": {
+            "type": "string"
+        },
+        "ReferenceId": {
+            "type": "string"
+        },
+        "Sequence": {
+            "type": "integer"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "QuestionPresentation": {
+            "type": "string"
+        },
+        "QuestionsToAsk": {
+            "type": "integer"
+        },
+        "StartNewPage": {
+            "type": "string"
+        },
+        "PassingScore": {
+            "type": ["integer", "string"]
+        },
+        "PassingRequirement": {
+            "type": "string"
+        },
+        "ResourceUrl": {
+            "type": "string"
+        },
+        "ViewDescriptionOnReview": {
+            "type": "string"
+        },
+        "ShowOnSummary": {
+            "type": "string"
+        },
+        "DateCreated": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DateModified": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "BranchType": {
+            "type": "string"
+        },
+        "BranchTarget": {
+            "type": "string"
+        },
+        "Uri": {
+            "type": "string"
+        }
+    }
+}

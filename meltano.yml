@@ -1,19 +1,18 @@
 version: 1
 send_anonymous_usage_stats: false
+tracking_ids.cli: false
+tracking_ids.ui: false
+tracking_ids.ui_embed: false
 project_id: tap-brillium
 plugins:
   extractors:
   - name: tap-brillium
     namespace: tap_brillium
-    # TODO: To test using Meltano, replace with absolute path
-    #       to the tap-brillium.sh script:
     executable: ./tap-brillium.sh
     capabilities:
     - state
     - catalog
     - discover
-    config:
-      start_date: '2010-01-01T00:00:00Z'
     settings:
     - name: base_uri
     - name: user_agent
@@ -22,7 +21,13 @@ plugins:
       kind: password
     - name: start_date
       value: '2010-01-01T00:00:00Z'
+    config:
+      start_date: '2010-01-01T00:00:00Z'
+    select:
+    - '*.*'
   loaders:
   - name: target-jsonl
     variant: andyh1203
     pip_url: target-jsonl
+    config:
+      destination_path: example-output
