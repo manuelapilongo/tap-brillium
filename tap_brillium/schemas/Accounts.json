@@ -59,7 +59,6 @@
             "type": "string"
         },
         "Uri": {
-            "format": "date-time",
             "type": "string"
         }
     }
