@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tap-brillium"
-version = "0.0.1"
+version = "1.0.1"
 description = "`tap-brillium` is a Singer tap for Brillium, built with the Meltano SDK for Singer Taps."
 authors = ["Manuel Apilongo"]
 keywords = [
