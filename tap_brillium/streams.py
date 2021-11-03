@@ -78,7 +78,6 @@ class QuestionsStream(BrilliumStream):
     parent_stream_type = AssessmentsStream
     path = "/{questions_path}"
     primary_keys = ["Id"]
-    replication_method = 'INCREMENTAL'
     valid_replication_keys = None
     replication_key = None
 
@@ -88,8 +87,8 @@ class RespondentsStream(BrilliumStream):
     path = "/{respondents_path}"
     primary_keys = ["Id"]
     replication_method = 'INCREMENTAL'
-    valid_replication_keys = None
-    replication_key = None
+    valid_replication_keys = ['DateFinished']
+    replication_key = 'DateFinished'
 
     def get_child_context(self, record: dict, context: Optional[dict]) -> dict:
         """Return a context dictionary for child streams."""
@@ -109,17 +108,17 @@ class ResultsStream(BrilliumStream):
     path = "/{results_path}"
     primary_keys = ["Id"]
     replication_method = 'INCREMENTAL'
-    valid_replication_keys = None
-    replication_key = None
+    valid_replication_keys = ['DateAnswered']
+    replication_key = 'DateAnswered'
 
-class CommentsStream(BrilliumStream):
-    name = "Comments"
-    parent_stream_type = RespondentsStream
-    path = "/{comments_path}"
-    primary_keys = ["Id"]
-    replication_method = 'INCREMENTAL'
-    valid_replication_keys = None
-    replication_key = None
+# class CommentsStream(BrilliumStream):
+#     name = "Comments"
+#     parent_stream_type = RespondentsStream
+#     path = "/{comments_path}"
+#     primary_keys = ["Id"]
+#     replication_method = 'INCREMENTAL'
+#     valid_replication_keys = None
+#     replication_key = None
 
 class IncompletesStream(RespondentsStream):
     path = "/{incompletes_path}"
