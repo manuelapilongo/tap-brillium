@@ -78,6 +78,7 @@ class QuestionsStream(BrilliumStream):
     parent_stream_type = AssessmentsStream
     path = "/{questions_path}"
     primary_keys = ["Id"]
+    replication_method = 'INCREMENTAL'
     valid_replication_keys = None
     replication_key = None
 
@@ -86,6 +87,7 @@ class RespondentsStream(BrilliumStream):
     parent_stream_type = AssessmentsStream
     path = "/{respondents_path}"
     primary_keys = ["Id"]
+    replication_method = 'INCREMENTAL'
     valid_replication_keys = None
     replication_key = None
 
@@ -106,6 +108,7 @@ class ResultsStream(BrilliumStream):
     parent_stream_type = RespondentsStream
     path = "/{results_path}"
     primary_keys = ["Id"]
+    replication_method = 'INCREMENTAL'
     valid_replication_keys = None
     replication_key = None
 
@@ -114,6 +117,7 @@ class CommentsStream(BrilliumStream):
     parent_stream_type = RespondentsStream
     path = "/{comments_path}"
     primary_keys = ["Id"]
+    replication_method = 'INCREMENTAL'
     valid_replication_keys = None
     replication_key = None
 
