@@ -1,6 +1,5 @@
 """Stream type classes for tap-brillium."""
 
-from pathlib import Path
 from typing import Optional
 
 from tap_brillium.client import BrilliumStream

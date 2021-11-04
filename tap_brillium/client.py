@@ -11,6 +11,7 @@ from singer_sdk.streams import RESTStream
 MAX_PAGE_SIZE = 1000
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
+
 class BrilliumStream(RESTStream):
     """Brillium stream class."""
 
@@ -31,9 +32,9 @@ class BrilliumStream(RESTStream):
     def records_jsonpath(self) -> str:
         """Values are usually inside property with endpoint name"""
         path = "$[*]"
-        if (self.name):
+        if self.name:
             path = f"$.{self.name}[*]"
-        if (self.data_json_path): # in case name differs from json path
+        if self.data_json_path:  # in case name differs from json path
             path = f"$.{self.data_json_path}[*]"
 
         return path
@@ -58,7 +59,8 @@ class BrilliumStream(RESTStream):
         if "user_agent" in self.config:
             headers["User-Agent"] = self.config.get("user_agent")
         if "api_version" in self.config:
-            headers["Accept"] = f"application/vnd.ingeniousgroup.testcraftapi-{self.config.get('api_version')}+json"
+            preheader = "application/vnd.ingeniousgroup.testcraftapi"
+            headers["Accept"] = f"{preheader}-{self.config.get('api_version')}+json"
 
         return headers
 
@@ -77,12 +79,12 @@ class BrilliumStream(RESTStream):
             self.next_page_token_jsonpath, response.json()
         )
         next_page = next(iter(next_page_matches), None)
-        if next_page == True:
+        if next_page is True:
             curr_page_matches = extract_jsonpath(
                 self.curr_page_token_jsonpath, response.json()
             )
             curr_page = next(iter(curr_page_matches), None)
-            if type(curr_page) == int:
+            if isinstance(curr_page, int):
                 next_page_token = curr_page + 1
 
         return next_page_token
@@ -109,8 +111,12 @@ class BrilliumStream(RESTStream):
     def _sync_children(self, child_context: dict) -> None:
         for child_stream in self.child_streams:
             if child_stream.selected or child_stream.has_selected_descendents:
-                if "ignore_streams" in child_context and child_stream.name in child_context["ignore_streams"]:
-                    self.logger.warn(f"Ignoring child {child_stream.name} of {self.name} Id: {child_context['parentId']}")
+                if ("ignore_streams" in child_context
+                        and child_stream.name in child_context["ignore_streams"]):
+                    self.logger.warn(
+                        f"Ignoring child {child_stream.name} of "
+                        + f"{self.name} Id: {child_context['parentId']}"
+                    )
                     continue
                 child_stream.sync(context=child_context)
 
